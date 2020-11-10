@@ -1,0 +1,54 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:react/recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:promise/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint",
+    "prettier/unicorn"
+  ],
+  "plugins": ["@typescript-eslint", "prettier", "jsdoc", "promise", "unicorn"],
+  "rules": {
+    "prettier/prettier": "error",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "kebabCase": true,
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
+    "typescript-eslint/indent": "off",
+    "react/display-name": ["off", { "ignoreTranspilerName": true }]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.13.1"
+    }
+  }
+}

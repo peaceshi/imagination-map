@@ -1,0 +1,65 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": { "source.fixAll": true },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/dist/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "fileheader.customMade": {
+    "LastEditTime": "Do not edit", // 文件最后编辑时间
+    "@author": "peaceshi <peaceshi@outlook.com>",
+    "@description": ""
+  },
+  "fileheader.configObj": {
+    "wideSame": true, // 设置为true开启
+    "wideNum": 13, // 字段长度 默认为13
+    "specialOptions": {
+      "Date": "@date",
+      "Description": "@description"
+    },
+    "beforeAnnotation": {
+      "ts": "/**\n * Licensed under the MIT License. See LICENSE in the project root for license information.",
+      "js": "/**\n * Licensed under the MIT License. See LICENSE in the project root for license information."
+    },
+    "atSymbol": ["", "@"], // 所有文件的头部注释和函数注释的默认值
+    "colon": [" ", " "] // 所有文件的头部注释和函数注释的默认值
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}
