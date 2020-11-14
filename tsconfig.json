@@ -1,0 +1,28 @@
+{
+  "include": ["src", "types"],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": "./",
+    /* paths - If you configure Snowpack import aliases, add them here. */
+    "paths": {
+      // Define either ONE of these...
+      // 1. General support: matches everything relative to the project directory
+      //"*": ["*"],
+      // 2. Explicit support: match only your mounted directories (Recommended!)
+      "src/*": ["src/*"],
+      "public/*": ["public/*"],
+    },
+    /* noEmit - Snowpack builds (emits) files, not tsc. */
+    "noEmit": true,
+    /* Additional Options */
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "error"
+  }
+}
