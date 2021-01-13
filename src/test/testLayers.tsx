@@ -14,7 +14,7 @@ import {
 } from "./Properties";
 import { useStore, mutate } from "stook";
 import produce from "immer";
-import { useReference, useVisible } from "./hooks";
+import { useVisible } from "./hooks";
 // import { DrawLineStringMode, DrawPolygonMode } from "@nebula.gl/edit-modes";
 // import { EditableGeoJsonLayer } from "@nebula.gl/layers";
 // import Draggable from "react-draggable"; // The default
@@ -53,7 +53,7 @@ export const MapLayers = (): ReactElement => {
   // const [buttonState] = useStore("buttonState");
   const [textVisibility, setTextVisibility] = useState(textProperties);
   const [buttonState, setButtonState] = useStore("buttonState", false);
-  const { isOpen, onClose } = useVisible("panelVisable");
+  const { isOpen, onClose } = useVisible("panelVisible");
   const buttonOnClick = useCallback(() => {
     console.log("buttonState:", !buttonState);
     setButtonState(!buttonState);
