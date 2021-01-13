@@ -1,0 +1,50 @@
+import React, { useState, useCallback, ReactElement, useEffect } from "react";
+import { COORDINATE_SYSTEM } from "deck.gl";
+import DeckGL from "@deck.gl/react";
+import { BitmapLayer, LineLayer } from "deck.gl";
+
+const data = [
+  { sourcePosition: [0, -90], targetPosition: [0, 90], name: "latitudeCenter", color: [0, 255, 255] },
+  { sourcePosition: [-180, 0], targetPosition: [180, 0], name: "longitudeCenter", color: [0, 0, 0] },
+  { sourcePosition: [20, -90], targetPosition: [20, 90], name: "longitudeCente2", color: [0, 0, 0] }
+];
+
+export const viewState = {
+  id: "mainMapView",
+  longitude: 0,
+  latitude: 0,
+  zoom: 13.5,
+  maxZoom: 20,
+  minZoom: 12.5,
+  pitch: 0,
+  bearing: 0
+};
+
+export const MapLayers = (): ReactElement => {
+  return (
+    <div id="map-container">
+      <DeckGL viewState={viewState} controller={true}>
+        <BitmapLayer
+          id="bitmap-layer"
+          data={[
+            {
+              image: "layers/51cf05526d3392bb8af7b0a8e55c8bb4_2330082124659889173.jpeg",
+              bounds: [
+                [-749, -1299],
+                [-749, 2797],
+                [3347, 2797],
+                [3347, -1299]
+              ],
+              coordinateSystem: COORDINATE_SYSTEM.METER_OFFSETS,
+              coordinateOrigin: [0, 0],
+              desaturate: 0,
+              transparentColor: [0, 0, 0, 0],
+              tintColor: [255, 255, 255]
+            }
+          ]}
+        />
+        <LineLayer id="line-layer" data={data} />
+      </DeckGL>
+    </div>
+  );
+};

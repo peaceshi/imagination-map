@@ -15,11 +15,6 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "fileheader.customMade": {
-    "LastEditTime": "Do not edit", // 文件最后编辑时间
-    "@author": "peaceshi <peaceshi@outlook.com>",
-    "@description": ""
-  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

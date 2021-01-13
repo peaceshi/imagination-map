@@ -2,3 +2,8 @@
 build
 web_modules
 node_modules
+public/layers/
+public/icons/
+snowpack.crt
+snowpack.key
+debug.log

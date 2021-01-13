@@ -6,6 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Web site created using create-snowpack-app" />
     <title>Snowpack App</title>
+    <script>
+      function require(libName) {
+        if (libName == "load-styles") {
+          // https://www.npmjs.com/package/load-styles/v/2.0.0
+          return function loadStyles(css, doc) {
+            // default to the global `document` object
+            if (!doc) doc = document;
+
+            var head = doc.head || doc.getElementsByTagName("head")[0];
+
+            // no <head> node? create one...
+            if (!head) {
+              head = doc.createElement("head");
+              var body = doc.body || doc.getElementsByTagName("body")[0];
+              if (body) {
+                body.parentNode.insertBefore(head, body);
+              } else {
+                doc.documentElement.appendChild(head);
+              }
+            }
+
+            var style = doc.createElement("style");
+            style.type = "text/css";
+            if (style.styleSheet) {
+              // IE
+              style.styleSheet.cssText = css;
+            } else {
+              // the world
+              style.appendChild(doc.createTextNode(css));
+            }
+            head.appendChild(style);
+
+            return style;
+          };
+        }
+        throw Error(`require ${libName} failed, require syntax is not supported`);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

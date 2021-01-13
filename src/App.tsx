@@ -1,37 +1,36 @@
-import React, { useState, useEffect, ReactElement } from "react";
-import logo from "./logo.svg";
+import React, { ReactElement } from "react";
+import { Layout, Spin } from "antd";
+import { DetailsPanel } from "./test/IconDetailsPanel";
+import { MapLayers } from "./test/testLayers";
+import { useVisible, useReference } from "./test/hooks";
+// import { Example } from "./test/testDraw";
+// import { MapLayers } from "./test/testJsx";
+import "antd/dist/antd.css";
 import "./App.css";
+import { FilterPanel } from "./test/FilterPanel";
+import { ScreenFull } from "./test/Components";
+const { Content } = Layout;
 
-/**
- *@returns {ReactElement} ReactElement
- */
-const App = (): ReactElement => {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
+export const App = (): ReactElement => {
   // Return the App component.
+  const { visible } = useVisible("loadingState", true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <Layout className="map-layout-main">
+      <Spin spinning={visible} size="large" tip="Loading..." style={{ position: "inherit" }}>
+        <Content
+          id="main"
+          className="map-layout-background"
+          style={{ position: "relative", height: "calc(100vh - 40px)", margin: "20px", background: "rgb(0, 0, 0)" }}
+        >
+          <div id="map-container">
+            <MapLayers></MapLayers>
+            <DetailsPanel></DetailsPanel>
+            <FilterPanel></FilterPanel>
+            <ScreenFull></ScreenFull>
+          </div>
+        </Content>
+      </Spin>
+    </Layout>
   );
 };
-
-export default App;

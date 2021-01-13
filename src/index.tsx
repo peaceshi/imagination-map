@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import { App } from "./App";
+import { devtools } from "stook-devtools";
 import "./index.css";
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -11,7 +11,10 @@ ReactDOM.render(
 );
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-// Learn more: https://www.snowpack.dev/#hot-module-replacement
+// Learn more: https://snowpack.dev/concepts/hot-module-replacement
 if (import.meta.hot) {
   import.meta.hot.accept();
+}
+if (import.meta.env.NODE_ENV !== "production") {
+  devtools.init();
 }

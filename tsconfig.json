@@ -8,12 +8,8 @@
     "baseUrl": "./",
     /* paths - If you configure Snowpack import aliases, add them here. */
     "paths": {
-      // Define either ONE of these...
-      // 1. General support: matches everything relative to the project directory
-      //"*": ["*"],
-      // 2. Explicit support: match only your mounted directories (Recommended!)
-      "src/*": ["src/*"],
-      "public/*": ["public/*"],
+      /* "source: skypack" type declarations are installed to ".snowpack/types" */
+      // "*": [".snowpack/types/*"]
     },
     /* noEmit - Snowpack builds (emits) files, not tsc. */
     "noEmit": true,
