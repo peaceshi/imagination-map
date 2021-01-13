@@ -133,11 +133,11 @@ export const baseMapProperties = [
 export const baseIconProperties = [
   {
     id: "icon-layer2",
-    data: "2.label.json",
+    data: "data/2.label.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "icon_3.png",
+    iconAtlas: "data/icon_3.png",
     iconMapping: ICON_MAPPING,
     getIcon: (): string => "2",
 
@@ -150,11 +150,11 @@ export const baseIconProperties = [
   },
   {
     id: "icon-layer3",
-    data: "3.label.json",
+    data: "data/3.label.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "icon_3.png",
+    iconAtlas: "data/icon_3.png",
     iconMapping: ICON_MAPPING,
     getIcon: (): string => "3",
 
@@ -167,11 +167,11 @@ export const baseIconProperties = [
   },
   {
     id: "icon-layerN",
-    data: "n.label.json",
+    data: "data/n.label.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "icon_1.png",
+    iconAtlas: "data/icon_1.png",
     iconMapping: ICON_MAPPING,
     getIcon: (): string => "n",
 
@@ -253,11 +253,11 @@ const content = (
 export const dataIconProperties = [
   {
     id: "icon-layer-0",
-    data: "point_list.json",
+    data: "data/point_list.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "000.png",
+    iconAtlas: "data/000.png",
     iconMapping: mapping2,
     getIcon: (d: { name: string }) => {
       for (const item of label) {
