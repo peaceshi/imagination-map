@@ -27,7 +27,14 @@ export const App = (): ReactElement => {
         <Content
           id="main"
           className="map-layout-background"
-          style={{ position: "relative", height: "calc(100vh - 40px)", margin: "20px", background: "rgb(0, 0, 0)" }}
+          style={{
+            position: "relative",
+            height: "calc(100vh - 40px)",
+            margin: "20px",
+            background: "rgb(0, 0, 0)",
+            minWidth: "300px",
+            minHeight: "550px"
+          }}
         >
           <div id="map-container" ref={setReference}>
             <MapLayers></MapLayers>

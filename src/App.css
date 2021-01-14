@@ -4,3 +4,6 @@
 .ant-tabs-tab .anticon {
   margin-inline: 6px;
 }
+.ant-drawer-content {
+  background-color: transparent;
+}
