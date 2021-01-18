@@ -3,3 +3,5 @@ build
 web_modules
 snowpack.config.js
 web-test-runner.config.js
+workbox-config.js
+workbox-config-dev.js

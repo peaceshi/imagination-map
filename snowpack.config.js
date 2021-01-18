@@ -1,22 +1,23 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
-    public: { url: "/", static: true },
-    src: { url: "/_dist_" }
+    public: { url: "/v3", static: true },
+    src: { url: "/v3/dist" }
   },
   plugins: [
     "@snowpack/plugin-react-refresh",
     "@snowpack/plugin-dotenv",
-    "@snowpack/plugin-typescript",
-    [
-      "@snowpack/plugin-webpack",
-      {
-        outputPattern: {
-          css: "_dist_/css/[name].[contenthash].bundle.css",
-          js: "_dist_/js/[name].[contenthash].bundle.js"
-        }
-      }
-    ]
+    "@snowpack/plugin-typescript"
+    // [
+    //   "@snowpack/plugin-webpack",
+    //   {
+    //     outputPattern: {
+    //       css: "v3/dist/css/[name].[contenthash].bundle.css",
+    //       js: "v3/dist/js/[name].[contenthash].bundle.js"
+    //     },
+    //     htmlMinifierOptions: false
+    //   }
+    // ]
     // [
     //   "@snowpack/plugin-run-script",
     //   {
@@ -30,33 +31,25 @@ module.exports = {
     /* To enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"}
   ],
-  install: [
-    /* ... */
-  ],
-  installOptions: {
+  packageOptions: {
     /* ... */
     // namedExports: ["@nebula.gl/editor"],
-    polyfillNode: true
+    source: "local"
+    // polyfillNode: true
   },
   devOptions: {
     /* ... */
     secure: true
   },
   buildOptions: {
-    /* ... */
-  },
-  proxy: {
-    /* ... */
+    metaUrlPath: "/v3/_snowpack"
   },
   alias: {
     /* ... */
-  },
-  experiments: {
-    source: "local"
-    // optimize: {
-    //   bundle: true,
-    //   minify: true,
-    //   target: "es2020"
-    // }
   }
+  // optimize: {
+  //   bundle: true,
+  //   minify: true,
+  //   target: "es2020"
+  // }
 };
