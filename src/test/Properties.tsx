@@ -71,7 +71,7 @@ export const TEXT_DATA2 = [
 export const baseMapProperties = [
   {
     id: "baseMapLayer01",
-    image: "/v3/layers/51cf05526d3392bb8af7b0a8e55c8bb4_2330082124659889173.webp",
+    image: "layers/51cf05526d3392bb8af7b0a8e55c8bb4_2330082124659889173.webp",
     bounds: [
       [-749, -1299],
       [-749, 2797],
@@ -86,7 +86,7 @@ export const baseMapProperties = [
   },
   {
     id: "baseMapLayer02",
-    image: "/v3/layers/ab70261eb2bc15fd18d5af4e3d1f65c4_8595026742728073190.webp",
+    image: "layers/ab70261eb2bc15fd18d5af4e3d1f65c4_8595026742728073190.webp",
     bounds: [
       [-749, -5394],
       [-749, -1299],
@@ -101,7 +101,7 @@ export const baseMapProperties = [
   },
   {
     id: "baseMapLayer03",
-    image: "/v3/layers/419f239d774a765cbf42fd37c5e292f6_6899586273298013559.webp",
+    image: "layers/419f239d774a765cbf42fd37c5e292f6_6899586273298013559.webp",
     bounds: [
       [-4845, -1299],
       [-4845, 2797],
@@ -116,7 +116,7 @@ export const baseMapProperties = [
   },
   {
     id: "baseMapLayer04",
-    image: "/v3/layers/274ea72af8e42aee9daae34479998e60_1798619833213420606.webp",
+    image: "layers/274ea72af8e42aee9daae34479998e60_1798619833213420606.webp",
     bounds: [
       [-4845, -5394],
       [-4845, -1299],
@@ -133,11 +133,11 @@ export const baseMapProperties = [
 export const baseIconProperties = [
   {
     id: "icon-layer2",
-    data: "/v3/data/2.label.json",
+    data: "data/2.label.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "/v3/data/icon_3.png",
+    iconAtlas: "data/icon_3.png",
     iconMapping: ICON_MAPPING,
     getIcon: (): string => "2",
 
@@ -150,11 +150,11 @@ export const baseIconProperties = [
   },
   {
     id: "icon-layer3",
-    data: "/v3/data/3.label.json",
+    data: "data/3.label.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "/v3/data/icon_3.png",
+    iconAtlas: "data/icon_3.png",
     iconMapping: ICON_MAPPING,
     getIcon: (): string => "3",
 
@@ -167,11 +167,11 @@ export const baseIconProperties = [
   },
   {
     id: "icon-layerN",
-    data: "/v3/data/n.label.json",
+    data: "data/n.label.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "/v3/data/icon_1.png",
+    iconAtlas: "data/icon_1.png",
     iconMapping: ICON_MAPPING,
     getIcon: (): string => "n",
 
@@ -253,11 +253,11 @@ const content = (
 export const dataIconProperties = [
   {
     id: "icon-layer-0",
-    data: "/v3/data/point_list.json",
+    data: "data/point_list.json",
     pickable: true,
     // iconAtlas and iconMapping are required
     // getIcon: return a string
-    iconAtlas: "/v3/data/000.png",
+    iconAtlas: "data/000.png",
     iconMapping: mapping2,
     getIcon: (d: { name: string }) => {
       for (const item of label) {

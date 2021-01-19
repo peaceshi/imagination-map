@@ -1,8 +1,8 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
-    public: { url: "/v3", static: true },
-    src: { url: "/v3/dist" }
+    public: { url: "/" },
+    src: { url: "/dist" }
   },
   plugins: [
     "@snowpack/plugin-react-refresh",
@@ -42,7 +42,9 @@ module.exports = {
     secure: true
   },
   buildOptions: {
-    metaUrlPath: "/v3/_snowpack"
+    out: "build/v3",
+    baseUrl: "/v3/"
+    // metaUrlPath: "/v3/_snowpack"
   },
   alias: {
     /* ... */
