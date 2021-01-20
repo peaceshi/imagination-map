@@ -2,9 +2,13 @@
 build
 web_modules
 node_modules
-public/layers/
-public/icons/
-public/data/
+layers/
+icons/
+data/
 snowpack.crt
 snowpack.key
 debug.log
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map
