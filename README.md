@@ -9,4 +9,13 @@ npm install
 npm run start
 ```
 
-You want to know more project information? See `Documents`.
+if you do not need the local HTTPS server. Close it in `snowpack.config.js`.
+
+```js
+  devOptions: {
+    /* ... */
+    secure: true // using false to close it.
+  },
+```
+
+You want to know more project information? See [Documents](https://github.com/peaceshi/imagination-map/tree/dev/documents).

@@ -1,3 +1,4 @@
+// const { merge } = require("webpack-merge");
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
@@ -12,10 +13,21 @@ module.exports = {
     //   "@snowpack/plugin-webpack",
     //   {
     //     outputPattern: {
-    //       css: "v3/dist/css/[name].[contenthash].bundle.css",
-    //       js: "v3/dist/js/[name].[contenthash].bundle.js"
+    //       css: "dist/css/[name].[contenthash].bundle.css",
+    //       js: "dist/js/[name].[contenthash].bundle.js"
     //     },
-    //     htmlMinifierOptions: false
+    //     htmlMinifierOptions: false,
+    //     extendConfig: (config) => {
+    //       return merge(config, {
+    //         resolve: {
+    //           plugins: [],
+    //           extensions: [".es6"]
+    //         },
+    //         resolveLoader: {
+    //           plugins: []
+    //         }
+    //       });
+    //     }
     //   }
     // ]
     // [
