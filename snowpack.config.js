@@ -60,10 +60,14 @@ module.exports = {
   },
   alias: {
     /* ... */
+  },
+  optimize: {
+    entrypoints: "auto",
+    bundle: true,
+    splitting: true,
+    treeshake: true,
+    manifest: false,
+    minify: true,
+    target: "es2020"
   }
-  // optimize: {
-  //   bundle: true,
-  //   minify: true,
-  //   target: "es2020"
-  // }
 };

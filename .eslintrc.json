@@ -24,10 +24,7 @@
     "plugin:promise/recommended",
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint",
-    "prettier/unicorn"
+    "prettier"
   ],
   "plugins": ["@typescript-eslint", "prettier", "promise", "unicorn"],
   "rules": {
