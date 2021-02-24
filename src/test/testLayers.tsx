@@ -26,10 +26,14 @@ let viewportTextLayer = singleLayerConstructor(TextLayer, textProperties[0]);
 let viewportTextLayer2 = singleLayerConstructor(TextLayer, textProperties[1]);
 const iconLayer = singleLayerConstructor(IconLayer, dataIconProperties[0]);
 
-const baseLayer = baseMapLayers.concat(coordinateLayers, [iconLayer], baseIconLayers, [
+const baseLayer = [
+  ...baseMapLayers,
+  ...coordinateLayers,
+  iconLayer,
+  ...baseIconLayers,
   viewportTextLayer,
   viewportTextLayer2
-]);
+];
 //layer props cannot be changed after creation
 //create a new instance of the layer to update a prop
 
@@ -45,7 +49,8 @@ export const viewport = new Viewport({
 });
 const controller = {
   type: MapController,
-  doubleClickZoom: false
+  doubleClickZoom: false,
+  inertia: true
 };
 export const MapLayers = (): ReactElement => {
   const [viewState, setViewState] = useState(viewport);
@@ -69,9 +74,14 @@ export const MapLayers = (): ReactElement => {
     setTextVisibility(nextState);
     viewportTextLayer = singleLayerConstructor(TextLayer, textVisibility[0]);
     viewportTextLayer2 = singleLayerConstructor(TextLayer, textVisibility[1]);
-    setLayers(
-      baseMapLayers.concat(coordinateLayers, [iconLayer], baseIconLayers, [viewportTextLayer, viewportTextLayer2])
-    );
+    setLayers([
+      ...baseMapLayers,
+      ...coordinateLayers,
+      iconLayer,
+      ...baseIconLayers,
+      viewportTextLayer,
+      viewportTextLayer2
+    ]);
   }, [buttonState, setButtonState, textVisibility]);
   const onClick = useCallback(
     (info) => {
@@ -124,9 +134,14 @@ export const MapLayers = (): ReactElement => {
       // console.log(baseVisibilityState[0].visible);
       viewportTextLayer = singleLayerConstructor(TextLayer, textVisibility[0]);
       viewportTextLayer2 = singleLayerConstructor(TextLayer, textVisibility[1]);
-      setLayers(
-        baseMapLayers.concat(coordinateLayers, [iconLayer], baseIconLayers, [viewportTextLayer, viewportTextLayer2])
-      );
+      setLayers([
+        ...baseMapLayers,
+        ...coordinateLayers,
+        iconLayer,
+        ...baseIconLayers,
+        viewportTextLayer,
+        viewportTextLayer2
+      ]);
       setViewState(viewState);
     },
     [textVisibility]

@@ -4,34 +4,49 @@ import { Drawer } from "antd";
 import { useStore } from "stook";
 
 export const DetailsPanel = (): ReactElement => {
-  const [translateX, setTranslateX] = useState("translateX(100%)");
+  const [translateX, setTranslateX] = useState("translateX(120%)");
   const [container] = useStore<HTMLDivElement>("map-container");
   const { visible, onClose } = useVisible("panelVisible", false);
-
+  const [width, setWidth] = useState(0);
   useEffect(() => {
-    const state = visible ? "translateX(0%)" : "translateX(100%)";
+    //@ts-expect-error: Bad types define
+    window.addEventListener("resize", setWidth);
+    const width = (container?.clientHeight - 40) / 2.18;
+    const state = visible ? "translateX(0%)" : "translateX(120%)";
+    setWidth(width);
     setTranslateX(state);
-  }, [visible]);
+  }, [container?.clientHeight, visible]);
 
   return (
     <Drawer
-      mask={false}
-      maskStyle={{ pointerEvents: "none" }}
-      maskClosable={true}
-      title="Basic Drawer"
+      className="right-drawer"
       placement="right"
-      closable={true}
-      onClose={onClose}
-      visible={visible}
       getContainer={container}
+      visible={visible}
+      mask={false}
+      closable={false}
+      onClose={onClose}
       style={{
         transform: translateX,
-        width: "256px",
-        height: "calc(100% - 80px)",
-        marginTop: "40px",
-        marginRight: "40px"
+        width: `${width}px`,
+        height: "calc(100% - 40px)",
+        margin: "20px",
+        backgroundColor: "transparent",
+        backgroundImage: `url(./icons/ui/bac.png)`,
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
       }}
-      bodyStyle={{ padding: "0px", width: "256px" }}
+      bodyStyle={{
+        padding: "0px",
+        margin: "3%",
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        backgroundColor: "transparent"
+      }}
     ></Drawer>
   );
 };

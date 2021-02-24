@@ -3,7 +3,6 @@ import { Layout, Spin } from "antd";
 import { DetailsPanel } from "./test/IconDetailsPanel";
 import { MapLayers } from "./test/testLayers";
 import { useVisible } from "./test/hooks";
-import "antd/dist/antd.css";
 import "./App.css";
 import { FilterPanel } from "./test/FilterPanel";
 import { ScreenFull } from "./test/Components";
@@ -32,11 +31,19 @@ export const App = (): ReactElement => {
             height: "calc(100vh - 40px)",
             margin: "20px",
             background: "rgb(0, 0, 0)",
-            minWidth: "300px",
-            minHeight: "550px"
+            minWidth: "100px"
           }}
         >
-          <div id="map-container" ref={setReference}>
+          <div
+            id="map-container"
+            ref={setReference}
+            style={{
+              position: "relative",
+              height: "100%",
+              background: "rgb(0, 0, 0)",
+              minWidth: "100px"
+            }}
+          >
             <MapLayers></MapLayers>
             <DetailsPanel></DetailsPanel>
             <FilterPanel></FilterPanel>

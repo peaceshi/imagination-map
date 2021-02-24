@@ -1,22 +1,19 @@
-import { Image, Tabs, Button } from "antd";
-import React, { ReactElement, useCallback } from "react";
-import { AppleOutlined } from "@ant-design/icons";
+import { Tabs, Button } from "antd";
+import React, { ReactElement } from "react";
 
-import screenfull from "screenfull";
+import { useStore } from "stook";
+import { useFullscreen } from "ahooks";
 
 const { TabPane } = Tabs;
 
-export const BackgroundImage = (): ReactElement => {
-  return <Image style={{}} src="icons/ui/bac.png" />;
-};
 export const FilterTab = (): ReactElement => {
+  const [fontSize] = useStore<number>("fontSize");
   return (
-    <Tabs size="small" defaultActiveKey="1" centered>
+    <Tabs defaultActiveKey="1">
       <TabPane
         tab={
           <span>
-            <AppleOutlined />
-            <div>特性</div>
+            <div style={{ fontSize: `${fontSize}px` }}>特性</div>
           </span>
         }
         key="1"
@@ -25,8 +22,7 @@ export const FilterTab = (): ReactElement => {
         tab={
           <>
             <span>
-              <AppleOutlined />
-              <div>特性</div>
+              <div style={{ fontSize: `${fontSize}px` }}>特性</div>
             </span>
           </>
         }
@@ -35,8 +31,7 @@ export const FilterTab = (): ReactElement => {
       <TabPane
         tab={
           <span>
-            <AppleOutlined />
-            <div>特性</div>
+            <div style={{ fontSize: `${fontSize}px` }}>特性</div>
           </span>
         }
         key="3"
@@ -44,8 +39,7 @@ export const FilterTab = (): ReactElement => {
       <TabPane
         tab={
           <span>
-            <AppleOutlined />
-            <div>特性</div>
+            <div style={{ fontSize: `${fontSize}px` }}>特性</div>
           </span>
         }
         key="4"
@@ -53,8 +47,7 @@ export const FilterTab = (): ReactElement => {
       <TabPane
         tab={
           <span>
-            <AppleOutlined />
-            <div>特性</div>
+            <div style={{ fontSize: `${fontSize}px` }}>特性</div>
           </span>
         }
         key="5"
@@ -62,8 +55,7 @@ export const FilterTab = (): ReactElement => {
       <TabPane
         tab={
           <span>
-            <AppleOutlined />
-            <div>特性</div>
+            <div style={{ fontSize: `${fontSize}px` }}>特性</div>
           </span>
         }
         key="6"
@@ -71,8 +63,7 @@ export const FilterTab = (): ReactElement => {
       <TabPane
         tab={
           <span>
-            <AppleOutlined />
-            <div>特性</div>
+            <div style={{ fontSize: `${fontSize}px` }}>特性</div>
           </span>
         }
         key="7"
@@ -80,20 +71,13 @@ export const FilterTab = (): ReactElement => {
     </Tabs>
   );
 };
-export const ScreenFull = (): ReactElement => {
-  const element = document.querySelector("#main");
-  const onClick = useCallback(() => {
-    if (screenfull.isEnabled) {
-      screenfull.on("change", () => {
-        console.log("Am I fullscreen?", screenfull.isEnabled ? () => "Yes" : "No");
-      });
-      void screenfull.toggle(element ?? undefined);
-    }
-  }, [element]);
 
+export const ScreenFull = (): ReactElement => {
+  const [container] = useStore<HTMLDivElement>("map-container");
+  const [isFullscreen, { toggleFull }] = useFullscreen(container);
   return (
-    <Button onClick={onClick} style={{ position: "absolute", left: "50%" }}>
-      fullscreen
+    <Button onClick={toggleFull} style={{ position: "absolute", left: "50%" }}>
+      {isFullscreen ? "Exit fullscreen" : "Fullscreen"}
     </Button>
   );
 };

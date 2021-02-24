@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { useToggle } from "ahooks";
-import { Drawer, Button, Space, Image } from "antd";
-import { BackgroundImage, FilterTab } from "./Components";
+import { Drawer, Button } from "antd";
+
+import { FilterTab } from "./Components";
 import { useStore } from "stook";
 
 export const FilterPanel = (): ReactElement => {
@@ -9,13 +10,23 @@ export const FilterPanel = (): ReactElement => {
   const [container] = useStore<HTMLDivElement>("map-container");
   const [translateX, setTranslateX] = useState("translateX(-100%)");
   const [translateX1, setTranslateX1] = useState("translateX(0%)");
-
+  const [width, setWidth] = useState(0);
+  const [fontSize, setFontSize] = useStore<number>("fontSize");
   useEffect(() => {
-    const state = visible ? "translateX(0%)" : "translateX(-100%)";
-    const state1 = visible ? "translateX(22vw)" : "translateX(0%)";
+    //@ts-expect-error: Bad types define
+    window.addEventListener("resize", setTranslateX1); //@ts-expect-error: Bad types define
+    window.addEventListener("resize", setWidth); //@ts-expect-error: Bad types define
+    window.addEventListener("resize", setFontSize);
+    const width = (container?.clientHeight - 40) / 2.18;
+    const deltaX = width + 40;
+    const fontScale = width * 0.04;
+    const state = visible ? "translateX(0%)" : "translateX(-150%)";
+    const state1 = visible ? `translateX(${deltaX}px)` : `translateX(0%)`;
+    setFontSize(fontScale);
+    setWidth(width);
     setTranslateX(state);
     setTranslateX1(state1);
-  }, [visible]);
+  }, [container?.clientHeight, setFontSize, visible]);
 
   const transformState = (toggleState?: boolean) => {
     toggle(toggleState);
@@ -23,85 +34,304 @@ export const FilterPanel = (): ReactElement => {
   return (
     <>
       <Drawer
-        getContainer={container}
+        className="left-drawer"
         placement="left"
+        getContainer={container}
         visible={visible}
         mask={false}
+        closable={false}
         style={{
           transform: translateX,
-          minWidth: "256px",
-          minHeight: "512px",
-          maxWidth: "512px",
-          maxHeight: "calc(100vh - 80px)",
-          width: "20vw",
-          height: "calc(20vw * 2.18)",
+          width: `${width}px`,
+          height: "calc(100% - 40px)",
           position: "absolute",
-          display: "flex",
-          margin: "20px"
+          margin: "20px",
+          backgroundColor: "transparent",
+          backgroundImage: `url(./icons/ui/bac.png)`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
         }}
         bodyStyle={{
           padding: "0px",
-          minWidth: "256px",
-          width: "20vw",
-          height: "100%",
-          position: "absolute",
-          backgroundImage: "url('/icons/ui/bac.png')",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat"
+          margin: "3%",
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "nowrap",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          backgroundColor: "transparent"
         }}
         onClose={() => transformState(false)}
       >
-        <Space
-          direction="vertical"
+        <div
           style={{
-            position: "absolute",
+            position: "relative",
             width: "100%",
-            height: "100%",
-            zIndex: 1
+            marginBlock: "3%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            flex: "0 1 8.5%"
           }}
         >
           <div
             style={{
-              position: "absolute",
-              width: "100%",
-              height: "13%",
-              backgroundColor: "cadetblue",
-              display: "flex"
+              height: "100%",
+              position: "relative",
+              flex: "0 1 29%",
+              marginInlineStart: "3%",
+              backgroundImage: "url('./icons/ui/asas.png')",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              backgroundPosition: "center"
+            }}
+          />
+          <div
+            style={{
+              height: "100%",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              flexWrap: "nowrap",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flex: "1 1 auto"
             }}
           >
             <div
               style={{
-                margin: "2%",
-                width: "20%",
-                height: "calc(100% - 4vh)",
-                position: "absolute",
-                backgroundImage: "url('/icons/ui/bac.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat"
+                height: "30%",
+                width: "100%",
+                position: "relative",
+                flex: "0 1 auto",
+                alignSelf: "flex-start",
+                color: "#D7D2B8",
+                fontSize: `${fontSize}px`
+              }}
+            >
+              注册/登录
+            </div>
+            <div
+              style={{
+                height: "30%",
+                width: "100%",
+                position: "relative",
+                flex: "0 1 auto",
+                alignSelf: "flex-end",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "nowrap",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  flex: "1 1 auto",
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "nowrap",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    flex: "0 1 20%",
+                    alignSelf: "flex-start",
+                    backgroundImage: "url('./icons/ui/icon_cloud.png')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "contain"
+                  }}
+                />
+                <div
+                  style={{
+                    height: "100%",
+                    flex: "1 1 auto",
+                    alignSelf: "center",
+                    marginBottom: "3%",
+                    color: "#D7D2B8",
+                    fontSize: `${fontSize}px`
+                  }}
+                >
+                  数据云同步
+                </div>
+              </div>
+              <div
+                style={{
+                  height: "100%",
+                  flex: "1 1 auto",
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "nowrap",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    flex: "0 1 20%",
+                    alignSelf: "flex-start",
+                    backgroundImage: "url('./icons/ui/icon_fankui.png')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "contain"
+                  }}
+                />
+                <div
+                  style={{
+                    height: "100%",
+                    flex: "1 1 auto",
+                    alignSelf: "center",
+                    marginBottom: "3%",
+                    color: "#D7D2B8",
+                    fontSize: `${fontSize}px`
+                  }}
+                >
+                  反馈信息
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "nowrap",
+            flex: "0 1 22%",
+            width: "100%",
+            backgroundImage: "url('./icons/ui/filter_fold.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            backgroundPosition: "center"
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width: "94%",
+              marginInline: "3%",
+              marginTop: "6%",
+              display: "flex",
+              flex: "0 1 15%",
+              flexDirection: "row",
+              flexWrap: "nowrap",
+              justifyContent: "flex-start",
+              alignItems: "center"
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                flex: "0 1 10%",
+                height: "100%",
+                alignSelf: "flex-start",
+                backgroundImage: "url('./icons/ui/Treasure_icon.png')",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                backgroundPosition: "center"
+              }}
+            />
+            <div
+              style={{
+                position: "relative",
+                flex: "0 1 40%",
+                height: "100%",
+                alignSelf: "flex-start",
+                color: "#817472",
+                fontSize: `${fontSize}px`
+              }}
+            >
+              项目筛选
+            </div>
+            <div
+              style={{
+                position: "relative",
+                flex: "0 1 40%",
+                height: "100%",
+                alignSelf: "flex-start",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "nowrap",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                backgroundImage: "url('./icons/ui/bac_switch.png')",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                backgroundPosition: "center"
+              }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  flex: "0 1 51%",
+                  marginInline: "1%",
+                  backgroundImage: "url('./icons/ui/bac_switch_btn.png')",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center"
+                }}
+              />
+            </div>
+            <div
+              style={{
+                position: "relative",
+                flex: "0 1 10%",
+                height: "100%",
+                alignSelf: "flex-start",
+                backgroundImage: "url('./icons/ui/treasure_fold.png')",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
               }}
             />
           </div>
           <div
             style={{
-              position: "absolute",
-              top: "13%",
-              width: "100%",
-              height: "30%",
-              backgroundColor: "coral"
+              position: "relative",
+              flex: "1 1 auto",
+              width: "94%",
+              marginInline: "3%",
+              marginBottom: "3.5%",
+              backgroundImage: "url('./icons/ui/bac_filter.png')",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              backgroundPosition: "center"
             }}
-          ></div>
+          />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: "1 1 auto",
+            width: "100%",
+            backgroundImage: "url('./icons/ui/filter_bac.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 100%"
+          }}
+        >
+          {/* <FilterTab></FilterTab> */}
           <div
             style={{
-              position: "absolute",
-              top: "40%",
-              width: "100%",
-              height: "60%",
-              backgroundColor: "bisque"
+              position: "relative",
+              flex: "5 1 auto",
+              width: "94%",
+              margin: "3%",
+              backgroundImage: "url('./icons/ui/bac_filter_1.png')",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 100%"
             }}
-          >
-            <FilterTab></FilterTab>
-          </div>
-        </Space>
+          />
+        </div>
       </Drawer>
       <Button
         type="primary"
