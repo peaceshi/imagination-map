@@ -1,28 +1,44 @@
-import React, { ReactElement, useCallback } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Layout, Spin } from "antd";
 import { DetailsPanel } from "./test/IconDetailsPanel";
 import { MapLayers } from "./test/testLayers";
-import { useVisible } from "./test/hooks";
+import { useFontSize, usePanelWidth, useVisible } from "./test/hooks";
 import "./App.css";
 import { FilterPanel } from "./test/FilterPanel";
 import { ScreenFull } from "./test/Components";
 import { useStore } from "stook";
+import { useThrottleFn, useTimeout } from "ahooks";
 const { Content } = Layout;
 
 export const App = (): ReactElement => {
   // Return the App component.
-  const { visible } = useVisible("loadingState", true);
-  const [container, setContainer] = useStore<HTMLDivElement>("map-container");
+  const [state, setState] = useState(true);
+  const { updatePanelWidth } = usePanelWidth();
+  const { updateFontSize } = useFontSize();
+  const [, setContainer] = useStore<HTMLDivElement>("map-container");
   const setReference = useCallback(
     (container: HTMLDivElement) => {
       setContainer(container);
     },
     [setContainer]
   );
+  const { run } = useThrottleFn(
+    () => {
+      window.addEventListener("resize", updatePanelWidth);
+      updatePanelWidth();
+      window.addEventListener("resize", updateFontSize);
+      updateFontSize();
+    },
+    { wait: 1000 }
+  );
+  useEffect(run);
+  useTimeout(() => {
+    setState(false);
+  }, 3000);
 
   return (
     <Layout className="layout-main">
-      <Spin spinning={visible} size="large" tip="Loading..." style={{ position: "inherit" }}>
+      <Spin spinning={state} size="large" tip="Loading..." style={{ position: "inherit" }}>
         <Content
           id="main"
           className="map-layout-background"

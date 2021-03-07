@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { useVisible } from "./hooks";
+import { useFontSize, usePanelWidth, useVisible } from "./hooks";
 import { Drawer } from "antd";
 import { useStore } from "stook";
 
@@ -7,15 +7,13 @@ export const DetailsPanel = (): ReactElement => {
   const [translateX, setTranslateX] = useState("translateX(120%)");
   const [container] = useStore<HTMLDivElement>("map-container");
   const { visible, onClose } = useVisible("panelVisible", false);
-  const [width, setWidth] = useState(0);
+  const { width } = usePanelWidth();
+  const { fontSize } = useFontSize();
   useEffect(() => {
-    //@ts-expect-error: Bad types define
-    window.addEventListener("resize", setWidth);
-    const width = (container?.clientHeight - 40) / 2.18;
+    ////@ts-expect-error: Bad types define
     const state = visible ? "translateX(0%)" : "translateX(120%)";
-    setWidth(width);
     setTranslateX(state);
-  }, [container?.clientHeight, visible]);
+  }, [visible]);
 
   return (
     <Drawer

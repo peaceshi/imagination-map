@@ -174,7 +174,7 @@ export const MapLayers = (): ReactElement => {
       onLoad={onLoad}
       onBeforeRender={onBeforeRender}
       onClick={onClick}
-      onAfterRender={() => mutate("loadingState", false)}
+      // onAfterRender={() => mutate("loadingState", false)}
       // getCursor={layer.getCursor.bind(layer)}
       // onHover={onHover}
       // layerFilter={layerFilter}

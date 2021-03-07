@@ -2,32 +2,26 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { useToggle } from "ahooks";
 import { Drawer, Button } from "antd";
 
-import { FilterTab } from "./Components";
+import { SwitchButton, TreasureFold } from "./Components";
 import { useStore } from "stook";
+import { useFontSize, usePanelWidth } from "./hooks";
 
 export const FilterPanel = (): ReactElement => {
   const [visible, { toggle }] = useToggle(false);
   const [container] = useStore<HTMLDivElement>("map-container");
   const [translateX, setTranslateX] = useState("translateX(-100%)");
   const [translateX1, setTranslateX1] = useState("translateX(0%)");
-  const [width, setWidth] = useState(0);
-  const [fontSize, setFontSize] = useStore<number>("fontSize");
+  const { width } = usePanelWidth();
+  const { fontSize } = useFontSize();
   useEffect(() => {
     //@ts-expect-error: Bad types define
-    window.addEventListener("resize", setTranslateX1); //@ts-expect-error: Bad types define
-    window.addEventListener("resize", setWidth); //@ts-expect-error: Bad types define
-    window.addEventListener("resize", setFontSize);
-    const width = (container?.clientHeight - 40) / 2.18;
+    window.addEventListener("resize", setTranslateX1);
     const deltaX = width + 40;
-    const fontScale = width * 0.04;
     const state = visible ? "translateX(0%)" : "translateX(-150%)";
     const state1 = visible ? `translateX(${deltaX}px)` : `translateX(0%)`;
-    setFontSize(fontScale);
-    setWidth(width);
     setTranslateX(state);
     setTranslateX1(state1);
-  }, [container?.clientHeight, setFontSize, visible]);
-
+  }, [visible, width]);
   const transformState = (toggleState?: boolean) => {
     toggle(toggleState);
   };
@@ -40,6 +34,7 @@ export const FilterPanel = (): ReactElement => {
         visible={visible}
         mask={false}
         closable={false}
+        onClose={() => transformState(false)}
         style={{
           transform: translateX,
           width: `${width}px`,
@@ -62,7 +57,6 @@ export const FilterPanel = (): ReactElement => {
           alignItems: "center",
           backgroundColor: "transparent"
         }}
-        onClose={() => transformState(false)}
       >
         <div
           style={{
@@ -251,46 +245,8 @@ export const FilterPanel = (): ReactElement => {
             >
               项目筛选
             </div>
-            <div
-              style={{
-                position: "relative",
-                flex: "0 1 40%",
-                height: "100%",
-                alignSelf: "flex-start",
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "nowrap",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                backgroundImage: "url('./icons/ui/bac_switch.png')",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-                backgroundPosition: "center"
-              }}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  flex: "0 1 51%",
-                  marginInline: "1%",
-                  backgroundImage: "url('./icons/ui/bac_switch_btn.png')",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "contain",
-                  backgroundPosition: "center"
-                }}
-              />
-            </div>
-            <div
-              style={{
-                position: "relative",
-                flex: "0 1 10%",
-                height: "100%",
-                alignSelf: "flex-start",
-                backgroundImage: "url('./icons/ui/treasure_fold.png')",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center"
-              }}
-            />
+            <SwitchButton></SwitchButton>
+            <TreasureFold></TreasureFold>
           </div>
           <div
             style={{
