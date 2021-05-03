@@ -2,54 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <title>Web Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web site created using create-snowpack-app" />
+    <meta name="description" content="Web Map" />
+    <meta name="theme-color" content="#004d40" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="Snowpack App" />
-    <meta name="theme-color" content="#004d40" />
-    <title>Snowpack App</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-title" content="Web Map" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/ui/paimon_off.png" />
-    <script>
-      function require(libName) {
-        if (libName == "load-styles") {
-          // https://www.npmjs.com/package/load-styles/v/2.0.0
-          return function loadStyles(css, doc) {
-            // default to the global `document` object
-            if (!doc) doc = document;
-
-            var head = doc.head || doc.getElementsByTagName("head")[0];
-
-            // no <head> node? create one...
-            if (!head) {
-              head = doc.createElement("head");
-              var body = doc.body || doc.getElementsByTagName("body")[0];
-              if (body) {
-                body.parentNode.insertBefore(head, body);
-              } else {
-                doc.documentElement.appendChild(head);
-              }
-            }
-
-            var style = doc.createElement("style");
-            style.type = "text/css";
-            if (style.styleSheet) {
-              // IE
-              style.styleSheet.cssText = css;
-            } else {
-              // the world
-              style.appendChild(doc.createTextNode(css));
-            }
-            head.appendChild(style);
-
-            return style;
-          };
-        }
-        throw Error(`require ${libName} failed, require syntax is not supported`);
-      }
-    </script>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- manifest -->
+    <link rel="manifest" href="manifest.webmanifest" />
   </head>
   <body>
     <div id="root"></div>
@@ -69,15 +33,5 @@
         });
       }
     </script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

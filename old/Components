@@ -1,4 +1,4 @@
-import { Tabs, Button } from "antd";
+import { Tabs, Button, List } from "antd";
 import React, { ReactElement, useCallback } from "react";
 
 import { useStore } from "stook";
@@ -87,7 +87,10 @@ export const TreasureFold = (): ReactElement => {
   const [rotate, { toggle }] = useToggle("rotate(0deg)", "rotate(180deg)");
   return (
     <div
-      onClick={() => toggle()}
+      id="treasure-fold-button"
+      onClick={() => {
+        toggle();
+      }}
       style={{
         position: "relative",
         flex: "0 1 5%",
@@ -178,6 +181,29 @@ export const SwitchButton = (): ReactElement => {
       >
         {font2}
       </div>
+    </div>
+  );
+};
+
+export const ItemList = (): ReactElement => {
+  const data = [
+    {
+      title: "Title 1"
+    },
+    {
+      title: "Title 2"
+    },
+    {
+      title: "Title 3"
+    },
+    {
+      title: "Title 4"
+    }
+  ];
+  return (
+    <div style={{ position: "absolute", display: "flex" }}>
+      <List style={{ flex: "0 1 50%" }} dataSource={data} renderItem={(item) => <List.Item>{item.title}</List.Item>} />
+      <List style={{ flex: "0 1 50%" }} dataSource={data} renderItem={(item) => <List.Item>{item.title}</List.Item>} />
     </div>
   );
 };
