@@ -8,7 +8,23 @@ module.exports = {
   plugins: [
     "@snowpack/plugin-react-refresh",
     "@snowpack/plugin-dotenv",
-    "@snowpack/plugin-typescript"
+    [
+      "@snowpack/plugin-typescript",
+      {
+        /* Yarn PnP workaround: see https://www.npmjs.com/package/@snowpack/plugin-typescript */
+        ...(process.versions.pnp ? { tsc: "yarn pnpify tsc" } : {})
+      }
+    ]
+    // [
+    //   "@snowpack/plugin-webpack",
+    //   {
+    //     outputPattern: {
+    //       css: "dist/css/[name].[contenthash].bundle.css",
+    //       js: "dist/js/[name].[contenthash].bundle.js"
+    //     },
+    //     htmlMinifierOptions: true
+    //   }
+    // ]
     // [
     //   "@snowpack/plugin-webpack",
     //   {
@@ -43,27 +59,32 @@ module.exports = {
     /* To enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"}
   ],
+  optimize: {
+    entrypoints: "auto",
+    preload: false,
+    bundle: true,
+    splitting: true,
+    treeshake: true,
+    manifest: true,
+    minify: true,
+    target: "es2020"
+  },
   packageOptions: {
     /* ... */
-    // namedExports: ["@nebula.gl/editor"],
-    source: "local"
-    // polyfillNode: true
+    // namedExports: ["deck.gl"],
+    source: "local",
+    polyfillNode: true
   },
   devOptions: {
     /* ... */
-    secure: true
+    secure: false
   },
   buildOptions: {
-    out: "build/v3",
-    baseUrl: "/v3/"
+    // out: "build/"
+    baseUrl: "/v3"
     // metaUrlPath: "/v3/_snowpack"
   },
   alias: {
     /* ... */
   }
-  // optimize: {
-  //   bundle: true,
-  //   minify: true,
-  //   target: "es2020"
-  // }
 };

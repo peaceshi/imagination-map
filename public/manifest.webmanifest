@@ -1,7 +1,7 @@
 {
-  "name": "Imagination Map",
+  "name": "Web Map",
   "short_name": "Map",
-  "description": "Imagination Map",
+  "description": "Web Map",
   "icons": [
     {
       "src": "icons/ui/paimon_off@192.png",

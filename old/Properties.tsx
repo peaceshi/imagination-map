@@ -243,12 +243,6 @@ export const textProperties = [
     visible: true
   }
 ];
-const content = (
-  <div>
-    <p>Content</p>
-    <p>Content</p>
-  </div>
-);
 
 export const dataIconProperties = [
   {

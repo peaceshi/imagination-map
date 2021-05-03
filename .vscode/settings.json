@@ -1,16 +1,19 @@
 {
+  "files.autoSave": "off",
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "editor.codeActionsOnSave": { "source.fixAll": true },
+  "editor.codeActionsOnSave": { "source.fixAll": false, "source.organizeImports": false },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
+    "**/build/**": true,
+    "**/dist/**": true,
     "**/node_modules/*/**": true,
-    "**/dist/**": true
+    "**/public/tiles/**": true
   },
   "search.exclude": {
     "**/node_modules": true,
-    "dist": true
+    "build": true
   },
   "css.validate": false,
   "less.validate": false,
@@ -42,5 +45,5 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules//typescript//lib"
 }
